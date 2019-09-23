@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- BootStrap -->
+	<link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- Ajax -->
+	<script src=
+	"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="styles.css">
+	<script type="text/javascript" src="javaScript.js"></script>
+</head>
+<body>
+	<h1>Final Project </h1>
+	<div id="dataTable">
+		<h2 class="center">Record an item</h2>
+		<!-- this is the button div, that stores where the buttons are -->
+		<div class="form-inline center" id="item-buttons">
+			<button> button 1</button>
+			<button> button 2</button>
+			<button> button 2</button>
+			<button> button 2</button>
+			<button> button 2</button>
+		</div>
+		<!-- this is a table that stores the item and the amount of that item is consumed -->
+		<table class="table" id="summary">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Cnt</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Pizza</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>Hamburger</td>
+					<td>1</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- table that displays data for item consumed and timestamp when the item was consumed-->
+		<table class="table" id="diary">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>TimeStamp</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Pizza</td>
+					<td>2:00:00</td>
+				</tr>
+				<tr>
+					<td>Hamburger</td>
+					<td>1:00:00</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- This is the div that displays our loggin credentials-->
+	<div id="formDiv">
+		<h2 class="center">Please Authenticate </h2>
+		<div class="alert alert-danger" id="errorDiv">
+			<h3 class="center">Authentication Failed</h3>
+		</div>
+		<form id="form" method='post' class="form-inline center">
+			<label for="user">User:</label><input type="text" class="form-control mx-sm-3" id = "user">
+			<label for="password">Password:</label><input type="password" class="form-control mx-sm-3" id="password">
+			<div class="form-group">
+				<input type="submit" name="submit" value="submit" class="form-control">
+			</div>
+		</form>
+	</div>
+</body>
+</html>

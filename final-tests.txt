@@ -1,0 +1,43 @@
+#!/bin/bash
+UNIQUEID=smithb25
+
+#change the following to a token associated with your user id
+TOKEN=lotr1973fotr9371rotk
+
+curl -o q -q -X 'POST' -d '{"user":"test","password":"adsf"}' http://ceclnx01.cec.miamioh.edu/~${UNIQUEID}/cse383/finalProject/rest.php/v1/user 2>/dev/null 
+A=$(cat q)
+  echo  "Login Test with bad credentials Should Fail $A"
+
+  curl -q -X 'POST' -d '{"user":"test33","password":"test"}' http://ceclnx01.cec.miamioh.edu/~${UNIQUEID}/cse383/finalProject/rest.php/v1/user 2>/dev/null >q
+  A=$(cat q)
+  echo  "Login Test with bad user Should Fail $A"
+
+
+  curl -q -X 'POST' -d "{\"user\":\"${UNIQUEID}\",\"password\":\"test\"}" http://ceclnx01.cec.miamioh.edu/~${UNIQUEID}/cse383/finalProject/rest.php/v1/user 2>/dev/null >q
+  A=$(cat q)
+  echo  "Login Test with good credentials Should give token $A"
+
+
+  curl -q  http://ceclnx01.cec.miamioh.edu/~${UNIQUEID}/cse383/finalProject/rest.php/v1/items 2>/dev/null > q
+  A=$(cat q)
+  echo "Should display items $A"
+
+  curl -q  http://ceclnx01.cec.miamioh.edu/~${UNIQUEID}/cse383/finalProject/rest.php/v1/itemsSummary/${TOKEN} 2>/dev/null > q
+  A=$(cat q)
+  echo "Should display Summary $A"
+
+  curl -X 'POST' -d "{\"token\":\"${TOKEN}\",\"itemFK\":1}" http://ceclnx01.cec.miamioh.edu/~${UNIQUEID}/cse383/finalProject/rest.php/v1/items 2>/dev/null >q
+  A=$(cat q)
+  echo "Should add $A"
+
+  curl -q  http://ceclnx01.cec.miamioh.edu/~${UNIQUEID}/cse383/finalProject/rest.php/v1/itemsSummary/${TOKEN} 2>/dev/null > q
+  A=$(cat q)
+  echo "Should display Summary and one item should have increased $A"
+
+  curl -X 'POST' -d "{\"token\":\"fasdf\",\"itemFK\":1}" http://ceclnx01.cec.miamioh.edu/~${UNIQUEID}/cse383/finalProject/rest.php/v1/items 2>/dev/null >q
+  A=$(cat q)
+  echo "Should not add - bad token $A"
+
+  curl -X 'POST' -d "{\"token\":\"${TOKEN}\",\"itemFK\":100}" http://ceclnx01.cec.miamioh.edu/~${UNIQUEID}/cse383/finalProject/rest.php/v1/items 2>/dev/null >q
+  A=$(cat q)
+  echo "Should not add - bad item $A"

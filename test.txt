@@ -1,0 +1,29 @@
+#!/bin/bash
+URL="http://ceclnx01.cec.miamioh.edu/~schmitb3/cse383/cse-383-final-project/rest.php"
+username="test"
+password="test"
+token="136b06efd1f193bf2d03e74d86b023cb"
+
+curl -q -X 'POST' -d "{\"user\":\"${username}\",\"password\":\"${password}\"}" ${URL}/v1/user/null >q
+  A=$(cat q)
+  echo  "Should Work POST $A";
+  echo
+  echo
+
+curl -o q -q ${URL}/v1/items
+  A=$(cat q)
+  echo "Get Items - $A"
+  echo
+  echo
+
+curl -o q -q ${URL}/v1/items/${token}
+  A=$(cat q)
+  echo "Get Items - $A"
+  echo
+  echo
+
+curl -X 'POST' -d '{"token":"136b06efd1f193bf2d03e74d86b023cb","itemFK":"5"}' ${URL}/v1/items >q
+  A=$(cat q)
+  echo "Update Items - $A"
+  echo
+  echo
